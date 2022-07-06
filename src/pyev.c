@@ -338,7 +338,7 @@ PyType_ReadyWatcher(PyTypeObject *type, PyTypeObject *base)
 
 
 int
-PyModule_AddType(PyObject *module, const char *name, PyTypeObject *type)
+PyModule_AddType_(PyObject *module, const char *name, PyTypeObject *type)
 {
     if (PyType_Ready(type)) {
         return -1;
@@ -555,7 +555,7 @@ init_pyev(void)
     /* types and constants */
     if (
         /* loop */
-        PyModule_AddType(pyev, "Loop", &LoopType) ||
+        PyModule_AddType_(pyev, "Loop", &LoopType) ||
         PyModule_AddUnsignedIntMacro(pyev, EVFLAG_AUTO) ||
         PyModule_AddUnsignedIntMacro(pyev, EVFLAG_NOENV) ||
         PyModule_AddUnsignedIntMacro(pyev, EVFLAG_FORKCHECK) ||
